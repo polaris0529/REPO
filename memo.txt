@@ -1,0 +1,45 @@
+sudo apt-get install stress llibcgroup  
+
+/proc/{number}/cgroup
+
+cat /sys/fs/cgroup/devices/tasks
+
+sudo passwd root
+/etc/cgconfig.conf
+
+프로세스별 cgroup 정보 확인하기
+ls /proc/<pid>/cgroup
+
+현 시스템 내부의 서브시스템 목록 확인하기
+cat /proc/cgroups
+
+mkdir /sys/fs/cgroup/user01/cpu
+mkdir /sys/fs/cgroup/user01/cpu/utils
+cd /sys/fs/cgroup/user01/cpu/utils 
+echo $$ 
+
+
+tasks 
+
+echo "+cpu" >> /sys/fs/cgroup/cgroup.subtree_control
+echo "+cpuset" >> /sys/fs/cgroup/cgroup.subtree_control
+apt-get install cgroup-tools 
+sudo cgcreate -hwi -g cpu:mycgroup
+sudo cgcreate -hwi -g cpu:mycgroup2
+sudo ls -al /sys/fs/cgroup/mycgroup
+sudo ls -al /sys/fs/cgroup/mycgrou2
+sudo cgset -r memory.max=800000 mycgroup
+sudo cgset -r memory.max=5000 mycgroup2 
+sudo cgget -a  -g  
+sudo cgget -n -a -g mycgroup:/sys/fs/cgroup/mycgroup
+sudo cat /sys/fs/cgroup/mycgroup/memory.max
+sudo cgcreate -g cpu,net_cls:/test-subgroup
+sudo cgget -a -g /sys/fs/cgroup/mycgrou2:/sys/fs/cgroup/mycgroup2 
+sudo cgexec -g cpu:/sys/fs/cgroup/mycgroup  stress --vm 1 --vm-bytes 512M
+sudo cgdelete -g mycgroup:/sys/fs/cgroup/mycgroup
+sudo rm -r /sys/fs/cgroup/mycgroup
+sudo cgdelete -g mycgroup2:/sys/fs/cgroup/mycgroup2
+/etc/ssh/sshd
+
+
+

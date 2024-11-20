@@ -1,0 +1,10 @@
+version: '1'
+services:
+    centos7:
+        hostname: PSVM-PSNETAPP01
+        container_name: PSVM-PSNETAPP01
+        build:
+            context: .
+            dockerfile: .Dockerfile
+        stdin_open: true
+        tty: true

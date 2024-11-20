@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    networks:
+      - default
+      - our_net
+
+
+networks: 
+  our_net:
